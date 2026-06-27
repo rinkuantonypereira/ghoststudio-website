@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Studio — The agency that runs itself.</title>
+<meta name="description" content="We build web apps, mobile products, and AI agents for ambitious founders. Powered by Claude. Delivered in days, not months.">
+<meta property="og:title" content="Ghost Studio — AI-native digital studio">
+<meta property="og:description" content="One studio. Eight agents. Ship in days, not months.">
+<meta property="og:url" content="https://ghoststudio.agency">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ghost Studio — The agency that runs itself.">
+<meta name="twitter:description" content="We build web apps, mobile products, and AI agents for ambitious founders. Powered by Claude. Delivered in days, not months.">
+<link rel="canonical" href="https://ghoststudio.agency">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#08080E;
+  --surface:#0F0F18;
+  --card:#171724;
+  --card-hover:#1E1E2E;
+  --border:rgba(255,255,255,0.07);
+  --border-strong:rgba(255,255,255,0.13);
+  --mint:#00E5A0;
+  --mint-dim:rgba(0,229,160,0.08);
+  --mint-border:rgba(0,229,160,0.25);
+  --amber:#F59E0B;
+  --white:#F0F4F8;
+  --gray:#8B95A6;
+  --muted:#404858;
+  --font:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--black);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;}
+p{color:var(--gray);}
+h1,h2,h3,h4{font-weight:500;line-height:1.2;color:var(--white);}
+
+/* ── Layout ─────────────────────────────────────── */
+.container{max-width:1100px;margin:0 auto;padding:0 2rem;}
+section{padding:96px 2rem;}
+.section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--mint);margin-bottom:.875rem;display:block;}
+.section-head{font-size:clamp(28px,4vw,42px);letter-spacing:-.02em;margin-bottom:.875rem;}
+.section-sub{font-size:15px;line-height:1.75;max-width:500px;margin-bottom:3rem;}
+
+/* ── Nav ─────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,14,.88);backdrop-filter:blur(14px);border-bottom:.5px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:62px;padding:0 2rem;gap:1.5rem;}
+.logo{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--white);}
+.logo-mark{width:30px;height:30px;background:var(--mint);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-mark svg{width:16px;height:16px;fill:#000;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;margin-left:auto;}
+.nav-links a{color:var(--gray);font-size:14px;transition:color .15s;}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{margin-left:.5rem;padding:8px 18px;background:var(--mint);color:#000;font-size:14px;font-weight:500;border-radius:8px;transition:opacity .15s;white-space:nowrap;}
+.nav-cta:hover{opacity:.88;}
+
+/* ── Hero ────────────────────────────────────────── */
+#hero{padding-top:160px;padding-bottom:100px;text-align:center;position:relative;overflow:hidden;}
+.hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,160,.09) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--mint-dim);border:.5px solid var(--mint-border);border-radius:20px;font-size:12px;font-weight:500;color:var(--mint);margin-bottom:2rem;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0;}
+h1.hero-h{font-size:clamp(40px,7.5vw,78px);letter-spacing:-.03em;line-height:1.05;margin-bottom:1.5rem;}
+.hero-sub{font-size:17px;line-height:1.8;max-width:540px;margin:0 auto 2.5rem;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:13px 26px;background:var(--mint);color:#000;font-size:15px;font-weight:500;border-radius:9px;transition:opacity .15s;}
+.btn-primary:hover{opacity:.88;}
+.btn-ghost{padding:13px 26px;color:var(--white);font-size:15px;border-radius:9px;border:.5px solid var(--border-strong);transition:border-color .15s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);}
+.hero-stats{display:flex;justify-content:center;gap:3rem;margin-top:4rem;flex-wrap:wrap;}
+.hero-stat-num{font-size:28px;font-weight:500;color:var(--white);letter-spacing:-.02em;}
+.hero-stat-label{font-size:12px;color:var(--gray);margin-top:2px;}
+
+/* ── Proof bar ───────────────────────────────────── */
+.proof-bar{border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:18px 2rem;}
+.proof-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.75rem;flex-wrap:wrap;justify-content:center;}
+.proof-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;}
+.proof-div{width:1px;height:14px;background:var(--muted);}
+.proof-tech{font-size:13px;color:var(--gray);font-weight:500;display:flex;align-items:center;gap:6px;}
+.proof-tech i{font-size:15px;}
+
+/* ── How it works ────────────────────────────────── */
+#how{background:var(--surface);}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;}
+.step-card{background:var(--card);border:.5px solid var(--border);border-radius:16px;padding:2rem;transition:border-color .2s;}
+.step-card:hover{border-color:var(--border-strong);}
+.step-num{font-family:var(--mono);font-size:11px;color:var(--mint);margin-bottom:1.25rem;display:block;}
+.step-card h3{font-size:18px;margin-bottom:.625rem;}
+.step-card p{font-size:14px;line-height:1.65;}
+.step-conn{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:20px;}
+
+/* ── Services ────────────────────────────────────── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;border:.5px solid var(--border);border-radius:16px;overflow:hidden;background:var(--border);}
+.svc{background:var(--black);padding:2rem 1.75rem;transition:background .2s;}
+.svc:hover{background:var(--card);}
+.svc-icon{width:40px;height:40px;border-radius:10px;background:var(--mint-dim);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
+.svc-icon i{font-size:20px;color:var(--mint);}
+.svc h3{font-size:15px;margin-bottom:.5rem;}
+.svc p{font-size:13px;line-height:1.6;}
+
+/* ── Why ─────────────────────────────────────────── */
+#why{background:var(--surface);}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;}
+.metric{background:var(--card);border:.5px solid var(--border);border-radius:14px;padding:1.75rem;}
+.metric-num{font-size:42px;font-weight:500;color:var(--mint);letter-spacing:-.03em;margin-bottom:.25rem;}
+.metric h3{font-size:15px;margin-bottom:.375rem;}
+.metric p{font-size:13px;line-height:1.6;}
+
+/* ── Folio feature bar ───────────────────────────── */
+.folio-bar{background:var(--mint-dim);border:.5px solid var(--mint-border);border-radius:14px;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;}
+.folio-bar-icon{width:42px;height:42px;background:var(--mint);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.folio-bar-icon i{font-size:20px;color:#000;}
+.folio-bar-text p{font-size:14px;color:var(--mint);line-height:1.5;}
+.folio-bar-text span{font-weight:500;}
+.folio-link{margin-left:auto;padding:8px 16px;border:.5px solid var(--mint-border);border-radius:8px;font-size:13px;color:var(--mint);white-space:nowrap;transition:background .15s;}
+.folio-link:hover{background:var(--mint-dim);}
+
+/* ── Pricing ─────────────────────────────────────── */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;}
+.price-card{background:var(--card);border:.5px solid var(--border);border-radius:16px;padding:2rem;display:flex;flex-direction:column;}
+.price-card.star{border-color:var(--mint-border);}
+.price-badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;background:var(--mint-dim);color:var(--mint);width:fit-content;margin-bottom:1rem;}
+.price-card h3{font-size:20px;margin-bottom:.375rem;}
+.price-del{font-size:13px;color:var(--gray);margin-bottom:.875rem;}
+.price-amount{font-size:36px;font-weight:500;letter-spacing:-.02em;margin-bottom:1.5rem;}
+.price-amount span{font-size:16px;font-weight:400;color:var(--gray);}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:2rem;flex:1;}
+.price-feats li{font-size:13px;color:var(--gray);display:flex;align-items:flex-start;gap:8px;}
+.price-feats li i{font-size:14px;color:var(--mint);flex-shrink:0;margin-top:1px;}
+.price-btn{display:block;text-align:center;padding:11px;border-radius:9px;font-size:14px;font-weight:500;border:.5px solid var(--border-strong);color:var(--white);transition:all .15s;}
+.price-btn:hover{border-color:var(--mint);color:var(--mint);}
+.price-card.star .price-btn{background:var(--mint);color:#000;border-color:transparent;}
+.price-card.star .price-btn:hover{opacity:.9;}
+
+/* ── Process timeline ────────────────────────────── */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--border);}
+.tl-item{position:relative;padding:.875rem 0 .875rem 1.5rem;}
+.tl-dot{position:absolute;left:-1.875rem;top:1.25rem;width:13px;height:13px;border-radius:50%;background:var(--card);border:2px solid var(--mint);}
+.tl-item h4{font-size:14px;margin-bottom:3px;}
+.tl-item p{font-size:13px;line-height:1.5;}
+
+/* ── CTA ─────────────────────────────────────────── */
+#cta{text-align:center;}
+.cta-box{background:var(--card);border:.5px solid var(--border);border-radius:20px;padding:5rem 2rem;max-width:640px;margin:0 auto;position:relative;overflow:hidden;}
+.cta-glow{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:400px;height:250px;background:radial-gradient(ellipse,rgba(0,229,160,.1) 0%,transparent 70%);pointer-events:none;}
+.cta-box h2{font-size:clamp(26px,4vw,38px);letter-spacing:-.02em;margin-bottom:1rem;}
+.cta-box>p{font-size:15px;margin-bottom:2rem;line-height:1.75;max-width:420px;margin-left:auto;margin-right:auto;}
+.cta-form{display:flex;gap:10px;max-width:420px;margin:0 auto 1rem;}
+.cta-input{flex:1;padding:12px 16px;background:rgba(255,255,255,.05);border:.5px solid var(--border-strong);border-radius:9px;color:var(--white);font-size:14px;font-family:var(--font);outline:none;transition:border-color .15s;}
+.cta-input::placeholder{color:var(--muted);}
+.cta-input:focus{border-color:var(--mint);}
+.cta-note{font-size:12px;color:var(--muted);}
+.cta-note a{color:var(--mint);}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{border-top:.5px solid var(--border);padding:2.5rem 2rem;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+.footer-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;}
+.footer-links a{color:var(--muted);font-size:13px;transition:color .15s;}
+.footer-links a:hover{color:var(--gray);}
+.footer-copy{font-size:12px;color:var(--muted);}
+
+/* ── Responsive ──────────────────────────────────── */
+@media(max-width:700px){
+  .nav-links{display:none;}
+  section{padding:72px 1.25rem;}
+  #hero{padding-top:120px;padding-bottom:72px;}
+  .hero-stats{gap:2rem;}
+  .cta-form{flex-direction:column;}
+  .folio-bar{flex-direction:column;gap:1rem;}
+  .folio-link{margin-left:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 1C4.134 1 1 4.134 1 8c0 1.59.526 3.054 1.407 4.226L1.5 15h3.274C5.719 15.627 6.818 16 8 16c3.866 0 7-3.134 7-7S11.866 1 8 1zm0 2c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5z"/>
+        </svg>
+      </div>
+      Ghost Studio
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">Start a project →</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      AI-native digital studio · Chennai, India · Global delivery
+    </div>
+    <h1 class="hero-h">The agency<br>that runs itself.</h1>
+    <p class="hero-sub">We build web apps, mobile products, and AI agents for ambitious founders. Powered by Claude. Ship-ready in days, not months.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Start a project →</a>
+      <a href="#how" class="btn-ghost">See how it works</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">3×</div>
+        <div class="hero-stat-label">Faster than a traditional agency</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">24/7</div>
+        <div class="hero-stat-label">Agents working around the clock</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">$0</div>
+        <div class="hero-stat-label">Status meetings. Ever.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Proof bar ── -->
+<div class="proof-bar">
+  <div class="proof-inner">
+    <span class="proof-label">Built with</span>
+    <div class="proof-div"></div>
+    <span class="proof-tech"><i class="ti ti-brain"></i>Claude</span>
+    <div class="proof-div"></div>
+    <span class="proof-tech"><i class="ti ti-brand-github"></i>GitHub</span>
+    <div class="proof-div"></div>
+    <span class="proof-tech"><i class="ti ti-database"></i>Supabase</span>
+    <div class="proof-div"></div>
+    <span class="proof-tech"><i class="ti ti-rocket"></i>Vercel</span>
+    <div class="proof-div"></div>
+    <span class="proof-tech"><i class="ti ti-credit-card"></i>Stripe</span>
+  </div>
+</div>
+
+<!-- ── How it works ── -->
+<section id="how">
+  <div class="container">
+    <span class="section-label">How it works</span>
+    <h2 class="section-head">Brief, build, ship.</h2>
+    <p class="section-sub">Three steps from idea to production. Our agent stack handles the execution — you focus on the vision.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">01 / BRIEF</span>
+        <h3>Share your vision</h3>
+        <p>Tell us what to build. Our Architect agent converts your brief into a full technical specification — stack, schema, API endpoints, timeline — in hours, not days. You review, approve, and we start.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">02 / BUILD</span>
+        <h3>Agents build it</h3>
+        <p>Forge codes. Guardian tests and deploys. You watch real-time progress in your Folio client portal. No status meetings. No surprise delays. Every milestone documented as it ships.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">03 / SHIP</span>
+        <h3>Live in days</h3>
+        <p>Your product goes live, monitored 24/7, and handed over with documentation. Invoice triggered on delivery — not on a billing cycle. What you see on day one is what you pay for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section id="services">
+  <div class="container">
+    <span class="section-label">Services</span>
+    <h2 class="section-head">Everything digital,<br>done faster.</h2>
+    <p class="section-sub">Five service lines. One agent stack. All priced to project completion — not by the hour.</p>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-icon"><i class="ti ti-layout-dashboard"></i></div>
+        <h3>Web applications</h3>
+        <p>SaaS platforms, dashboards, admin portals, B2B tools. Full-stack, production-grade, scalable from day one.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><i class="ti ti-device-mobile"></i></div>
+        <h3>Mobile apps</h3>
+        <p>iOS and Android from one React Native codebase. App Store submission included. Native performance, web speed of delivery.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><i class="ti ti-world"></i></div>
+        <h3>Marketing websites</h3>
+        <p>High-converting, CMS-powered, blazing fast. Built to rank and built to convert. Delivered in 7 days.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><i class="ti ti-brain"></i></div>
+        <h3>AI agents</h3>
+        <p>Custom automation, intelligent workflows, Claude-powered products built for your business operations. We build agents that actually work.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><i class="ti ti-rocket"></i></div>
+        <h3>SaaS products</h3>
+        <p>Full product from idea to launch. Auth, billing, onboarding, dashboards. Months compressed into weeks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Why ── -->
+<section id="why" style="background:var(--surface);">
+  <div class="container">
+    <span class="section-label">Why Ghost Studio</span>
+    <h2 class="section-head">A different kind<br>of studio.</h2>
+    <p class="section-sub">Traditional agencies bill by the hour and pad timelines. We bill by the project and compress them.</p>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-num">3×</div>
+        <h3>Faster delivery</h3>
+        <p>Agents work around the clock. What takes a traditional team 6 weeks takes us 2.</p>
+      </div>
+      <div class="metric">
+        <div class="metric-num">0</div>
+        <h3>Status meetings</h3>
+        <p>Real-time Folio portal shows exactly where your project is at every moment.</p>
+      </div>
+      <div class="metric">
+        <div class="metric-num">100%</div>
+        <h3>AI-reviewed code</h3>
+        <p>Every line checked for security, performance, and best practices before it ships.</p>
+      </div>
+      <div class="metric">
+        <div class="metric-num">24/7</div>
+        <h3>Uptime monitoring</h3>
+        <p>Guardian watches your product at all times. Issues resolved before you notice them.</p>
+      </div>
+    </div>
+
+    <div class="folio-bar">
+      <div class="folio-bar-icon"><i class="ti ti-layout-dashboard"></i></div>
+      <div class="folio-bar-text">
+        <p><span>Every project includes Folio</span> — our AI-native client portal. See real-time milestone progress, download deliverables, and approve work from one branded link. No login required.</p>
+      </div>
+      <a href="https://getfolio.app" class="folio-link" target="_blank">Learn about Folio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing ── -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-head">Project pricing.<br>No surprises.</h2>
+    <p class="section-sub">Fixed scope, fixed price. You know the full number before we write a line of code.</p>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <span class="price-badge">Starter</span>
+        <h3>Marketing site</h3>
+        <p class="price-del">High-converting website, delivered in 7 days. CMS-powered, mobile-first, ready to rank.</p>
+        <div class="price-amount">From $1,500</div>
+        <ul class="price-feats">
+          <li><i class="ti ti-check"></i>Up to 8 pages + blog</li>
+          <li><i class="ti ti-check"></i>Headless CMS (Sanity or Contentful)</li>
+          <li><i class="ti ti-check"></i>Contact forms + analytics</li>
+          <li><i class="ti ti-check"></i>SEO-optimised structure</li>
+          <li><i class="ti ti-check"></i>3 revision rounds</li>
+          <li><i class="ti ti-check"></i>Deployed on your domain</li>
+        </ul>
+        <a href="#cta" class="price-btn">Get a proposal</a>
+      </div>
+
+      <div class="price-card star">
+        <span class="price-badge">Most popular</span>
+        <h3>Web application</h3>
+        <p class="price-del">Full-stack SaaS or internal tool with auth, database, and integrations. Production-ready in 3 weeks.</p>
+        <div class="price-amount">From $8,000</div>
+        <ul class="price-feats">
+          <li><i class="ti ti-check"></i>Custom design system</li>
+          <li><i class="ti ti-check"></i>User auth + role-based access</li>
+          <li><i class="ti ti-check"></i>PostgreSQL + API layer</li>
+          <li><i class="ti ti-check"></i>Stripe payments (optional)</li>
+          <li><i class="ti ti-check"></i>CI/CD + uptime monitoring</li>
+          <li><i class="ti ti-check"></i>Folio client portal included</li>
+          <li><i class="ti ti-check"></i>90-day bug fix warranty</li>
+        </ul>
+        <a href="#cta" class="price-btn">Get a proposal</a>
+      </div>
+
+      <div class="price-card">
+        <span class="price-badge">Custom</span>
+        <h3>Complex platform</h3>
+        <p class="price-del">AI agents, mobile apps, multi-tenant platforms, enterprise integrations. Scoped per brief.</p>
+        <div class="price-amount">Let's talk</div>
+        <ul class="price-feats">
+          <li><i class="ti ti-check"></i>AI / Claude integration</li>
+          <li><i class="ti ti-check"></i>Mobile apps (iOS + Android)</li>
+          <li><i class="ti ti-check"></i>Multi-tenant SaaS architecture</li>
+          <li><i class="ti ti-check"></i>Enterprise API integrations</li>
+          <li><i class="ti ti-check"></i>Custom agentic workflows</li>
+          <li><i class="ti ti-check"></i>Dedicated project manager</li>
+        </ul>
+        <a href="#cta" class="price-btn">Book a call</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-glow"></div>
+      <h2>Ready to ship?</h2>
+      <p>Share your email and we'll have a scoped proposal in your inbox within 4 hours. No fluff, no discovery calls until you want them.</p>
+      <div class="cta-form">
+        <input type="email" class="cta-input" placeholder="your@email.com">
+        <a href="mailto:hello@ghoststudio.agency" class="btn-primary">Get proposal</a>
+      </div>
+      <p class="cta-note">Or reach us directly at <a href="mailto:hello@ghoststudio.agency">hello@ghoststudio.agency</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="logo" style="font-size:14px;">
+      <div class="logo-mark" style="width:24px;height:24px;border-radius:6px;">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="width:12px;height:12px;">
+          <path d="M8 1C4.134 1 1 4.134 1 8c0 1.59.526 3.054 1.407 4.226L1.5 15h3.274C5.719 15.627 6.818 16 8 16c3.866 0 7-3.134 7-7S11.866 1 8 1z"/>
+        </svg>
+      </div>
+      Ghost Studio
+    </a>
+    <ul class="footer-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://getfolio.app">Folio</a></li>
+      <li><a href="mailto:hello@ghoststudio.agency">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ghost Studio · ghoststudio.agency · Powered by Claude</p>
+  </div>
+</footer>
+
+</body>
+</html>
